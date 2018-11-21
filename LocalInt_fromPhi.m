@@ -33,7 +33,7 @@ function coef=LocalInt_fromPhi(data,rad,cola,lon,dom,Lmax,J,rplanet)
 
   M=MloadJ(1:J,:);
 
-  MM=M'*M;
+  MM=M*M';
   Md=M*data;
   slepcoef=MM\Md;
 
