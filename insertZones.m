@@ -1,4 +1,6 @@
 function Gfull=insertZones(G,Lmax)
+  % Puts zeros where otherwise the zonal coefficients would be.
+  % This allows you to use the classical evaluation routines.
 
   warning('G must be in ADDMOUT')
   
