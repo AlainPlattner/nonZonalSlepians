@@ -46,4 +46,4 @@ function coef=LocalInt_fromPhi(data,rad,cola,lon,dom,Lmax,J,rplanet)
   coef=insertZones(coef,Lmax);
 
   % Coefs in addmout. Transform to addmon
-  coef=out2on(coef);
+  coef=out2on(coef,Lmax);
