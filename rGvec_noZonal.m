@@ -1,5 +1,5 @@
 function rG=rGvec_noZonal(coefs,theta,phi,rad,rplanet,Lmax,onorout)
-% rG=rGvec(coefs,theta,phi,rad,rplanet,onorout)
+% rG=rGvec_noZonal(coefs,theta,phi,rad,rplanet,Lmax,onorout)
 %
 % Evaluates any gradient functions (e.g. gradient vector Slepian functions)
 % given by the provided coefficients of Elm at the provided points. 
