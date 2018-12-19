@@ -14,7 +14,7 @@ function coef=LocalInt_fromPhi(data,rad,cola,lon,dom,Lmax,J,rplanet)
 % rplanet   Planet radius to which the inner source solution should be 
 %           calculated
 %
-% Last modified, 11/21/2018 plattner-at-alumni.ethz.ch
+% Last modified, 12/19/2018 plattner-at-alumni.ethz.ch
   
   useit(1)=~isempty(data{1});
   useit(2)=~isempty(data{2});
@@ -43,7 +43,7 @@ function coef=LocalInt_fromPhi(data,rad,cola,lon,dom,Lmax,J,rplanet)
   coef=H(:,1:J)*slepcoef;  
   
   % Fill in zeros for zones
-  coef=insertZones(coef,Lmax);
+  coef=insertZones(coef,max(Lmax));
 
   % Coefs in addmout. Transform to addmon
-  coef=out2on(coef,Lmax);
+  coef=out2on(coef,max(Lmax));
