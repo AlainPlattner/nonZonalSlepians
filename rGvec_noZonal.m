@@ -8,11 +8,13 @@ function rG=rGvec_noZonal(coefs,theta,phi,rad,rplanet,Lmax,onorout)
 % 
 % INPUT:
 %
-% coefs     (L+1)^2 x J matrix whose columns are the (Slepian) coefficients 
+% coefs     (L+1)^2 -(L+1) x J matrix whose columns are
+%           the (Slepian) coefficients 
 % theta     colatitude of the locations in radians [0<=theta<=pi]
 % phi       longitude of the locations in radians [0<=phi<=2*pi]
 % rad       radial location of the data points 
 % rplanet   radius for which the coefficients are defined
+% Lmax      maximum spherical-harmonic degree 
 % onorout   are the columns of "coefs" in ADDMON (0) or ADDMOUT (1) format?
 %           default: 0
 %
@@ -23,8 +25,7 @@ function rG=rGvec_noZonal(coefs,theta,phi,rad,rplanet,Lmax,onorout)
 %
 % See also elm, rGscal
 %
-% Last modified by plattner-at-alumni.ethz.ch, 04/07/2016
-% Clarified output: plattner-at-alumni.ethz.ch, 14/07/2018
+% Last modified by plattner-at-alumni.ethz.ch, 12/19/2018
 
 defval('onorout',0)
 
