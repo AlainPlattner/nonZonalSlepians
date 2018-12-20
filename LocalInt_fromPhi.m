@@ -28,7 +28,7 @@ function coef=LocalInt_fromPhi(data,rad,cola,lon,dom,Lmax,J,rplanet)
   [~,~,mz,~]=addmout(max(Lmax));
 
   % Now evaluate
-  MloadJ=rGvec_noZonal(H(:,1:J),cola,lon,rad,rplanet,Lmax,1);
+  MloadJ=rGvec_noZonal(H(:,1:J),cola,lon,rad,rplanet,max(Lmax),1);
   MloadJ=MloadJ(:,repelem(useit,length(rad)));
 
   M=MloadJ(1:J,:);
