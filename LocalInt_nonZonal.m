@@ -1,5 +1,5 @@
-function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet)
-  % coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet)
+function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet,rsat)
+  % coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet,rsat)
   %
   % INPUT:
   %
@@ -17,20 +17,22 @@ function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet)
   %           resolution
   % rplanet   Planet radius to which the inner source solution should be 
   %           calculated
+  % rsat      [default: mean(rad)] satellite radial position for Slepians 
   %
   % OUTPUT:
   %
   % coef      Resulting potential-field coefficients in ADDMON
   %  
-  % Last modified, 12/19/2018 plattner-at-alumni.ethz.ch
+  % Last modified, 12/17/2020 plattner-at-alumni.ethz.ch
   
   useit(1)=~isempty(data{1});
   useit(2)=~isempty(data{2});
   useit(3)=~isempty(data{3});
   data=[data{1};data{2};data{3}];
   
-  avgsat=mean(rad);
-  [H,V]=gradvecglmalphaup_noZonal(dom,Lmax,avgsat,rplanet);
+  defval('rsat',mean(rad));
+  
+  [H,V]=gradvecglmalphaup_noZonal(dom,Lmax,rsat,rplanet);
 
   % mz is where the m=0 sit.
   [~,~,mz,~]=addmout(max(Lmax));
