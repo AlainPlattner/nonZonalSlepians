@@ -1,5 +1,5 @@
-function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet,rsat)
-  % coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet,rsat)
+function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,L,J,rplanet,rsat)
+  % coef=LocalInt_nonZonal(data,rad,cola,lon,dom,L,J,rplanet,rsat)
   %
   % INPUT:
   %
@@ -11,7 +11,8 @@ function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet,rsat)
   % cola,lon  colatitude/longitude positions of the data values (both as
   %           column values), 0<=cola<=pi; 0<=lon<=2pi
   % dom       integer (polar cap opening angle [degrees])
-  % Lmax      Maximum spherical harmonic degree for the internal source part
+  % L         Either maximum spherical harmonic degree
+  %           OR: spherical-harmonic band width [minL, maxL]
   % J         How many Slepian functions should be used to calculate the
   %           solution? More means more sensitive to noise but higher spatial
   %           resolution
@@ -32,13 +33,14 @@ function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet,rsat)
   
   defval('rsat',mean(rad));
   
-  [H,V]=gradvecglmalphaup_noZonal(dom,Lmax,rsat,rplanet);
+  [H,V]=gradvecglmalphaup_noZonal(dom,L,rsat,rplanet);
 
+  Lmax = max(L);
   % mz is where the m=0 sit.
-  [~,~,mz,~]=addmout(max(Lmax));
+  [~,~,mz,~]=addmout(Lmax);
 
   % Now evaluate
-  MloadJ=rGvec_noZonal(H(:,1:J),cola,lon,rad,rplanet,max(Lmax),1);
+  MloadJ=rGvec_noZonal(H(:,1:J),cola,lon,rad,rplanet,Lmax,1);
   MloadJ=MloadJ(:,repelem(useit,length(rad)));
 
   M=MloadJ(1:J,:);
@@ -53,7 +55,7 @@ function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,Lmax,J,rplanet,rsat)
   coef=H(:,1:J)*slepcoef;  
   
   % Fill in zeros for zones
-  coef=insertZones(coef,max(Lmax));
+  coef=insertZones(coef,Lmax);
 
   % Coefs in addmout. Transform to addmon
-  coef=out2on(coef,max(Lmax));
+  coef=out2on(coef,Lmax);
