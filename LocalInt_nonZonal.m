@@ -10,7 +10,7 @@ function coef=LocalInt_nonZonal(data,rad,cola,lon,dom,L,J,rplanet,rsat)
   % rad       radial position of satellite (planet radius + altitude)
   % cola,lon  colatitude/longitude positions of the data values (both as
   %           column values), 0<=cola<=pi; 0<=lon<=2pi
-  % dom       integer (polar cap opening angle [degrees])
+  % dom       integer (polar cap opening angle [degrees]) or region name
   % L         Either maximum spherical harmonic degree
   %           OR: spherical-harmonic band width [minL, maxL]
   % J         How many Slepian functions should be used to calculate the
