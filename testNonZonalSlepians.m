@@ -4,6 +4,7 @@ function testNonZonalSlepians()
   cmp=3;
   Lmax=20;
   dom=10;
+  %dom='namerica';
 
   rplanet=2440;
   rsat=2540;
