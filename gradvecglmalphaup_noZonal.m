@@ -216,7 +216,7 @@ else
 
     try
       % If you are running Matlab
-    	save(fname,'G','V''-v7.3')
+    	save(fname,'G','V','-v7.3')
     catch
       % If you are running octave
     	save(fname,'G','V') 
